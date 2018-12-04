@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
+/// https://flutter.io/docs/development/ui/layout
 void main() {
+  //debugPaintSizeEnabled = true;
+  //debugPaintBaselinesEnabled = true;
+  //debugPaintPointersEnabled = true;
   runApp(MyApp());
 }
 
@@ -28,6 +33,18 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
         softWrap: true,
       ),
     );
+
+    final debugButton = Container(
+      child: Center(
+        child: RaisedButton(
+          onPressed: () {
+            //debugDumpApp();
+            debugDumpLayerTree();
+          },
+          child: Text('Dump App'),
+        ),
+      ),
+    );
     return MaterialApp(
       title: 'Flutter',
       home: Scaffold(
@@ -36,10 +53,12 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
         ),
         body: ListView(
           children: <Widget>[
-            Image.asset('images/lake.jpg',width: 600, height: 240, fit: BoxFit.cover),
+            Image.asset('images/lake.jpg',
+                width: 600, height: 240, fit: BoxFit.cover),
             titleSection,
             buttonSectionLayout,
-            textSection
+            textSection,
+            debugButton
           ],
         ),
       ),
